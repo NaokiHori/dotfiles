@@ -50,21 +50,25 @@ set shiftwidth=2
 " visual
 syntax enable
 set t_Co=256  " needed for tmux
-set title
 set number
 set cursorline
 set showmatch
 set virtualedit=onemore
 set visualbell
+set scrolloff=3
 
 " key mapping
-set scrolloff=3
 nnoremap j gj
 nnoremap k gk
 nnoremap Y y$
 nnoremap <S-h> ^
 nnoremap <S-l> $
 nnoremap <CR> A<CR><ESC>
+nnoremap s <Nop>
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
 set backspace=indent,eol,start
 
 " search
