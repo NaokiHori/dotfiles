@@ -1,35 +1,33 @@
-" dein
+" omajinai
 if &compatible
   set nocompatible
 endif
-set runtimepath+=/home/naokihori/.vim/bundles/repos/github.com/Shougo/dein.vim
-if dein#load_state('/home/naokihori/.vim/bundles/')
-  call dein#begin('/home/naokihori/.vim/bundles')
-  call dein#add('/home/naokihori/.vim/bundles/repos/github.com/Shougo/dein.vim')
-  " tree
-  call dein#add('scrooloose/nerdtree')
-  " colorscheme
-  call dein#add('tomasr/molokai')
-  " block comment
-  call dein#add('tpope/vim-commentary')
-  " quick run
-  call dein#add('thinca/vim-quickrun')
+
+" reset augroup
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+" dein
+let s:cache_home=empty($XDG_CACHE_HOME)?expand('~/.vim'):$XDG_CACHE_HOME
+let s:dein_dir=s:cache_home.'/bundles'
+let s:dein_repo_dir=s:dein_dir.'/repos/github.com/Shougo/dein.vim'
+if !isdirectory(s:dein_repo_dir)
+  call system('git clone https://github.com/Shougo/dein.vim'.shellescape(s:dein_repo_dir))
+endif
+let &runtimepath=s:dein_repo_dir.",".&runtimepath
+
+let s:toml_file='~/.dein.toml'
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  call dein#load_toml(s:toml_file)
   call dein#end()
-  if dein#check_install()
-    call dein#install()
-  endif
   call dein#save_state()
 endif
 
-" plug-in config
-nnoremap <Space>n :NERDTree<CR>
-nnoremap <Space>q :QuickRun<CR>
-let g:quickrun_config = {
-\  "_": {
-\    "outputter/buffer/split": ":botright",
-\    "outputter/buffer/close_on_empty": 1
-\  }
-\}
+if has('vim_starting') && dein#check_install()
+  call dein#install()
+endif
 
 " file
 set nobackup

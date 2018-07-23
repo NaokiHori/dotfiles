@@ -1,0 +1,30 @@
+[[plugins]]
+repo='Shougo/dein.vim'
+
+[[plugins]]
+repo='scrooloose/nerdtree'
+hook_add='''
+  nnoremap <Space>n :NERDTree<CR>
+'''
+
+[[plugins]]
+repo='tomasr/molokai'
+hook_add='''
+  au MyAutoCmd VimEnter * nested colorscheme molokai
+'''
+
+[[plugins]]
+repo='tpope/vim-commentary'
+
+[[plugins]]
+repo='thinca/vim-quickrun'
+hook_add='''
+  let g:quickrun_config = {
+  \  "_": {
+  \    "outputter/buffer/split": ":botright",
+  \    "outputter/buffer/close_on_empty": 1
+  \  }
+  \}
+  nnoremap <Space>q :QuickRun<CR>
+'''
+
