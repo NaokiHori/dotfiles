@@ -2,13 +2,14 @@
 if &compatible
   set nocompatible
 endif
+filetype plugin indent on
 
 " reset augroup
 augroup MyAutoCmd
   autocmd!
 augroup END
 
-" dein
+"" dein
 let s:cache_home=empty($XDG_CACHE_HOME)?expand('~/.vim'):$XDG_CACHE_HOME
 let s:dein_dir=s:cache_home.'/bundles'
 let s:dein_repo_dir=s:dein_dir.'/repos/github.com/Shougo/dein.vim'
@@ -28,6 +29,7 @@ endif
 if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
+""
 
 " file
 set nobackup
@@ -36,6 +38,14 @@ set autoread
 set hidden
 set showcmd
 autocmd BufWritePre * :%s/\s\+$//ge
+
+" tab, indent
+set expandtab
+set autoindent
+set smartindent
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
 " visual
 syntax enable
@@ -46,16 +56,6 @@ set cursorline
 set showmatch
 set virtualedit=onemore
 set visualbell
-
-" tab, indent
-set expandtab
-set autoindent
-set smartindent
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-filetype plugin indent on
-
 
 " key mapping
 set scrolloff=3
