@@ -13,6 +13,7 @@ if dein#load_state('/home/naokihori/.vim/bundles/')
   endif
   call dein#save_state()
 endif
+nnoremap <Space>n :NERDTree<CR>
 
 " file
 set nobackup
