@@ -6,14 +6,30 @@ set runtimepath+=/home/naokihori/.vim/bundles/repos/github.com/Shougo/dein.vim
 if dein#load_state('/home/naokihori/.vim/bundles/')
   call dein#begin('/home/naokihori/.vim/bundles')
   call dein#add('/home/naokihori/.vim/bundles/repos/github.com/Shougo/dein.vim')
+  " tree
   call dein#add('scrooloose/nerdtree')
+  " colorscheme
+  call dein#add('tomasr/molokai')
+  " block comment
+  call dein#add('tpope/vim-commentary')
+  " quick run
+  call dein#add('thinca/vim-quickrun')
   call dein#end()
   if dein#check_install()
     call dein#install()
   endif
   call dein#save_state()
 endif
+
+" plug-in config
 nnoremap <Space>n :NERDTree<CR>
+nnoremap <Space>q :QuickRun<CR>
+let g:quickrun_config = {
+\  "_": {
+\    "outputter/buffer/split": ":botright",
+\    "outputter/buffer/close_on_empty": 1
+\  }
+\}
 
 " file
 set nobackup
@@ -23,20 +39,18 @@ set hidden
 set showcmd
 autocmd BufWritePre * :%s/\s\+$//ge
 
+" color
+colorscheme molokai
+set t_Co=256
+
 " visual
 syntax enable
+set title
 set number
 set cursorline
 set showmatch
 set virtualedit=onemore
 set visualbell
-
-" color
-hi Comment ctermfg=34
-hi Visual ctermbg=245
-hi LineNr cterm=bold, ctermfg=196
-hi CursorLineNr ctermfg=196, ctermbg=58
-hi Pmenu ctermbg=55
 
 " tab, indent
 set expandtab
@@ -47,11 +61,14 @@ set softtabstop=4
 set shiftwidth=4
 filetype plugin indent on
 
-" cursor movement
+" key mapping
 set scrolloff=3
 nnoremap j gj
 nnoremap k gk
 nnoremap Y y$
+nnoremap <S-h> ^
+nnoremap <S-l> $
+nnoremap <CR> A<CR><ESC>
 
 " search
 set ignorecase
@@ -71,10 +88,4 @@ endfor
 " status line
 set laststatus=2
 set statusline=%<%F%h%m%r\ [%{&ff}]\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})%=%l,%c%V\ %P
-
-" html edit
-augroup html
-  autocmd!
-  autocmd FileType html inoremap <buffer> </ </<C-x><C-o>
-augroup END
 
