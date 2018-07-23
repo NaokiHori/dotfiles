@@ -37,12 +37,9 @@ set hidden
 set showcmd
 autocmd BufWritePre * :%s/\s\+$//ge
 
-" color
-colorscheme molokai
-set t_Co=256
-
 " visual
 syntax enable
+set t_Co=256  " needed for tmux
 set title
 set number
 set cursorline
@@ -59,6 +56,7 @@ set softtabstop=4
 set shiftwidth=4
 filetype plugin indent on
 
+
 " key mapping
 set scrolloff=3
 nnoremap j gj
@@ -67,6 +65,7 @@ nnoremap Y y$
 nnoremap <S-h> ^
 nnoremap <S-l> $
 nnoremap <CR> A<CR><ESC>
+set backspace=indent,eol,start
 
 " search
 set ignorecase
@@ -85,5 +84,5 @@ endfor
 
 " status line
 set laststatus=2
-set statusline=%<%F%h%m%r\ [%{&ff}]\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})%=%l,%c%V\ %P
+" set statusline=%<%F%h%m%r\ [%{&ff}]\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})%=%l,%c%V\ %P
 

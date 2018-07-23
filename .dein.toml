@@ -28,3 +28,8 @@ hook_add='''
   nnoremap <Space>q :QuickRun<CR>
 '''
 
+[[plugins]]
+repo='itchyny/lightline.vim'
+hook_add='''
+  set noshowmode
+'''
