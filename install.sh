@@ -12,12 +12,13 @@ wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.18.0.tar.gz
 tar zxvf git-2.18.0.tar.gz
 cd git-2.18.0
 make configure
-./configure --prefix=/usr/local/bin
+./configure --prefix=/usr/local
 make all
 make install
 echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bash_profile
 source ~/.bash_profile
-git --version
+#yum remove -y git
+#git --version
 
 # python3
 #cd /usr/local/src
