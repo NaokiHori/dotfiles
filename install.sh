@@ -16,9 +16,9 @@ make configure
 make all
 make install
 echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bash_profile
-source ~/.bash_profile
-#yum remove -y git
-#git --version
+export PATH=$PATH:/usr/local/bin
+yum remove -y git
+git --version
 
 # python3
 #cd /usr/local/src
