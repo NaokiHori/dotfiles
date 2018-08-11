@@ -63,3 +63,8 @@ hook_add='''
 [[plugins]]
 repo='Yggdroot/indentLine'
 
+[[plugins]]
+repo='osyo-manga/vim-over'
+hook_add='''
+  nnoremap <Space>o :OverCommandLine<CR>:%s/
+'''
