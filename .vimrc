@@ -53,6 +53,7 @@ set t_Co=256  " needed for tmux
 set number
 set cursorline
 set showmatch
+source $VIMRUNTIME/macros/matchit.vim
 set virtualedit=onemore
 set visualbell
 set scrolloff=3
