@@ -40,6 +40,7 @@ set autoread
 set hidden
 set showcmd
 autocmd BufWritePre * :%s/\s\+$//ge
+set viminfo='20,\"1000
 
 " tab, indent
 set expandtab
