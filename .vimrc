@@ -4,6 +4,8 @@ if &compatible
 endif
 filetype plugin indent on
 
+let $VIMRUNTIME='/usr/local/share/vim/vim81'
+
 " reset augroup
 augroup MyAutoCmd
   autocmd!
@@ -78,5 +80,7 @@ set smartcase
 set incsearch
 set wrapscan
 set hlsearch
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+nmap <silent><Esc><Esc> :nohlsearch<CR><Esc>
 
+" completion
+set wildmenu
