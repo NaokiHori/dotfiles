@@ -36,11 +36,13 @@ echo 'export PATH="$PYENV_ROOT/versions/3.7.0:$PATH"' >> $USERHOME/.bash_profile
 source $USERHOME/.bash_profile
 
 # vim
-#yum remove -y vi
-#yum install -y lua-devel
-#cd /usr/local/src
-#git clone https://github.com/vim/vim
-#cd vim
-#./configure  --enable-fail-if-missing  --with-features=huge  --enable-python3interp=dynamic  --with-python3-config-dir=/home/naokihori/.pyenv/versions/3.7.0/lib/python3.7/config-3.7m-x86_64-linux-gnu/  --enable-cscope  --enable-fontset  --enable-multibyte  vi_cv_path_python3=/home/naokihori/.pyenv/versions/3.7.0/bin/python3.7  --enable-luainterp=dynamic  --enable-gpm  --enable-luainterp
-#echo 'export vi="vim"' >> ~/.bashrc
-#vi --version
+yum remove -y vi
+yum install -y lua-devel
+cd /usr/local/src
+git clone https://github.com/vim/vim
+cd vim
+./configure  --enable-fail-if-missing  --with-features=huge  --enable-python3interp=dynamic  --with-python3-config-dir=/home/naokihori/.pyenv/versions/3.7.0/lib/python3.7/config-3.7m-x86_64-linux-gnu/  --enable-cscope  --enable-fontset  --enable-multibyte  vi_cv_path_python3=/home/naokihori/.pyenv/versions/3.7.0/bin/python3.7  --enable-luainterp=dynamic  --enable-gpm  --enable-luainterp
+make
+make install
+echo 'alias vi="vim"' >> /home/naokihori/.bashrc
+source /home/naokihori/.bashrc
