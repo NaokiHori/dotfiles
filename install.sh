@@ -1,5 +1,8 @@
 #!/bin/bash
 
+USERHOME=/home/naokihori
+INSTALL=/usr/local
+
 # git
 yum remove -y git
 yum install -y make
@@ -7,30 +10,29 @@ yum install -y gcc
 yum install -y autoconf
 yum install -y wget
 yum install -y curl-devel expat-devel gettext-devel  openssl-devel zlib-devel perl-ExtUtils-MakeMaker
-cd /usr/local/src
+cd $INSTALL/src
 wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.18.0.tar.gz
 tar zxvf git-2.18.0.tar.gz
 cd git-2.18.0
 make configure
-./configure --prefix=/usr/local
+./configure --prefix=$INSTALL
 make all
 make install
-echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bash_profile
-export PATH=$PATH:/usr/local/bin
+echo 'export PATH=$PATH:/usr/local/bin' >> $USERHOME/.bash_profile
+source $USERHOME/.bash_profile
 yum remove -y git
-git --version
 
 # python3
-#cd /usr/local/src
-#git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-#echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
-#echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
-#echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
-#source ~/.bash_profile
-#yum install -y bzip2 bzip2-devel readline-devel sqlite sqlite-devel
-#pyenv install 3.7.0
-#pyenv global 3.7.0
-#python --version
+git clone https://github.com/pyenv/pyenv.git $USERHOME/.pyenv
+echo 'export PYENV_ROOT="/home/naokihori/.pyenv"' >> $USERHOME/.bash_profile
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $USERHOME/.bash_profile
+echo 'eval "$(pyenv init -)"' >> $USERHOME/.bash_profile
+source $USERHOME/.bash_profile
+yum install -y bzip2 bzip2-devel readline-devel sqlite sqlite-devel libffi-devel
+pyenv install 3.7.0
+pyenv global 3.7.0
+echo 'export PATH="$PYENV_ROOT/versions/3.7.0:$PATH"' >> $USERHOME/.bash_profile
+source $USERHOME/.bash_profile
 
 # vim
 #yum remove -y vi
