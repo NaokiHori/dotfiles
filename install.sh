@@ -21,6 +21,7 @@ make install
 echo 'export PATH=$PATH:/usr/local/bin' >> $USERHOME/.bash_profile
 source $USERHOME/.bash_profile
 yum remove -y git
+rm -rf $INSTALL/src/git-2.18.0 $INSTALL/src/git-2.18.0.tar.gz
 
 # python3
 git clone https://github.com/pyenv/pyenv.git $USERHOME/.pyenv
