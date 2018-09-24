@@ -2,6 +2,10 @@ if &compatible
   set nocompatible
 endif
 
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -14,9 +18,7 @@ endif
 
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-  let s:toml_dir = expand('~/.config/nvim')
-  call dein#load_toml(s:toml_dir . '/dein.toml', {'lazy': 0})
-  call dein#load_toml(s:toml_dir . '/dein_lazy.toml', {'lazy': 1})
+  call dein#load_toml('~/.dein.toml')
   call dein#end()
   call dein#save_state()
 endif
