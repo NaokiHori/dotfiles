@@ -66,7 +66,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap Y y$
 nnoremap <S-h> ^
-nnoremap <S-l> $
+nnoremap <S-l> $l
 nnoremap <CR> A<CR><ESC>
 nnoremap s <Nop>
 nnoremap sh <C-w>h
