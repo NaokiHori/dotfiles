@@ -1,37 +1,34 @@
-" omajinai
 if &compatible
   set nocompatible
 endif
-filetype plugin indent on
 
-let $VIMRUNTIME='/usr/local/share/vim/vim81'
-
-" reset augroup
 augroup MyAutoCmd
   autocmd!
 augroup END
 
-"" dein
-let s:cache_home=empty($XDG_CACHE_HOME)?expand('~/.vim'):$XDG_CACHE_HOME
-let s:dein_dir=s:cache_home.'/bundles'
-let s:dein_repo_dir=s:dein_dir.'/repos/github.com/Shougo/dein.vim'
-if !isdirectory(s:dein_repo_dir)
-  call system('git clone https://github.com/Shougo/dein.vim'.shellescape(s:dein_repo_dir))
-endif
-let &runtimepath=s:dein_repo_dir.",".&runtimepath
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-let s:toml_file='~/.dein.toml'
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-  call dein#load_toml(s:toml_file)
+  call dein#load_toml('~/.dein.toml')
   call dein#end()
   call dein#save_state()
 endif
 
-if has('vim_starting') && dein#check_install()
+filetype plugin indent on
+syntax enable
+
+if dein#check_install()
   call dein#install()
 endif
-""
 
 " file
 set nobackup
