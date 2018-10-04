@@ -1,3 +1,5 @@
+set encoding=utf-8
+set ttyfast
 if &compatible
   set nocompatible
 endif
@@ -51,14 +53,17 @@ set shiftwidth=2
 
 " visual
 syntax enable
-set t_Co=256  " needed for tmux
+if !has('gui_running')
+  set t_Co=256  " needed for tmux
+endif
 set number
+set laststatus=2
 set cursorline
 set showmatch
 source $VIMRUNTIME/macros/matchit.vim
 set virtualedit=onemore
 set visualbell
-set scrolloff=3
+set scrolloff=0
 
 " key mapping
 nnoremap j gj

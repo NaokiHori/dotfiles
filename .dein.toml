@@ -3,9 +3,7 @@ repo='Shougo/dein.vim'
 
 [[plugins]]
 repo='Shougo/VimProc'
-
-[[plugins]]
-repo='Shougo/VimShell'
+build='make'
 
 [[plugins]]
 repo='Shougo/neocomplete.vim'
@@ -42,25 +40,6 @@ hook_add='''
 repo='tpope/vim-commentary'
 
 [[plugins]]
-repo='thinca/vim-quickrun'
-hook_add='''
-  let g:quickrun_config = {
-  \  "_": {
-  \    "outputter/buffer/split": ":botright",
-  \    "outputter/buffer/close_on_empty": 1
-  \  }
-  \}
-  nnoremap <Space>q :QuickRun<CR>
-'''
-
-[[plugins]]
-repo='itchyny/lightline.vim'
-hook_add='''
-  set laststatus=2
-  set noshowmode
-'''
-
-[[plugins]]
 repo='Yggdroot/indentLine'
 
 [[plugins]]
@@ -68,3 +47,18 @@ repo='osyo-manga/vim-over'
 hook_add='''
   nnoremap <Space>o :OverCommandLine<CR>:%s/
 '''
+
+[[plugins]]
+repo='itchyny/lightline.vim'
+hook_add="""
+  set noshowmode
+  let g:lightline={ \
+    'colorscheme': 'default', \
+    'active': { \
+      'right': [['fileformat'],['totallines', 'filetype', 'fileencoding']] \
+    }, \
+    'component': { \
+      'totallines': '%L lines' \
+    }, \
+  }
+"""
