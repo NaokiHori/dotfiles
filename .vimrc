@@ -26,6 +26,8 @@ endif
 filetype plugin indent on
 syntax enable
 
+call map(dein#check_clean(), "delete(v:val, 'rf')")
+
 if dein#check_install()
   call dein#install()
 endif
