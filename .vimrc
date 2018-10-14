@@ -63,7 +63,7 @@ set showmatch
 source $VIMRUNTIME/macros/matchit.vim
 set virtualedit=onemore
 set visualbell
-set scrolloff=0
+set scrolloff=3
 
 " key mapping
 nnoremap j gj
