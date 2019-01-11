@@ -6,17 +6,28 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-alias git-log='git log --all --date-order --graph --oneline --decorate'
+alias gl='git log --all --date-order --graph --oneline --decorate'
+alias gst='git status'
+alias gd='git diff'
 alias pcs='pycodestyle'
+# personal
 if [ -f ~/.others ]; then
   source ~/.others
 fi
+# tex
+# if [ -f ~/.texrc ]; then
+#   source ~/.texrc
+# fi
 # git completion
 if [ -f ~/.git-completion.bash ]; then
   source ~/.git-completion.bash
 fi
 export PYTHONDONTWRITEBYTECODE=1
 export OMP_NUM_THREADS=4
+export XDG_CONFIG_HOME=~/.config
+# debug
+#ulimit -c unlimited
+alias grep='grep --color'
 
 # entering tmux
 export TERM=xterm-256color
