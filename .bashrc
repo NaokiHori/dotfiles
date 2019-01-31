@@ -44,6 +44,7 @@ alias grep='grep --color'
 
 # entering tmux
 export TERM=xterm-256color
+source $HOME/dotfiles/.tmux/rename
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
 function is_osx() { [[ $OSTYPE == darwin* ]]; }
 function is_screen_running() { [ ! -z "$STY" ]; }
