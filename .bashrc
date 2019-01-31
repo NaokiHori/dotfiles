@@ -1,32 +1,45 @@
 # .bashrc
 
+function _reset_path {
+  local p
+  for p in PATH; do
+    local ip=$(eval echo "\$INIT_$p")
+    if [ -z "$ip" ]; then
+      eval export INIT_$p="\$$p"
+    else
+      eval export $p="$ip"
+    fi
+  done
+}
+_reset_path
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
 # User specific aliases and functions
+alias vi='nvim'
 alias gl='git log --all --date-order --graph --oneline --decorate'
-alias gst='git status'
-alias gd='git diff'
 alias pcs='pycodestyle'
 # personal
 if [ -f ~/.others ]; then
   source ~/.others
 fi
 # tex
-# if [ -f ~/.texrc ]; then
-#   source ~/.texrc
-# fi
+if [ -f ~/.texrc ]; then
+  source ~/.texrc
+fi
+# local libraries
+export CPATH=/home/naokihori/.local/include
+export PATH=$PATH:/home/naokihori/.local/lib
 # git completion
 if [ -f ~/.git-completion.bash ]; then
   source ~/.git-completion.bash
 fi
 export PYTHONDONTWRITEBYTECODE=1
-export OMP_NUM_THREADS=4
-export XDG_CONFIG_HOME=~/.config
 # debug
-#ulimit -c unlimited
+ulimit -c unlimited
 alias grep='grep --color'
 
 # entering tmux

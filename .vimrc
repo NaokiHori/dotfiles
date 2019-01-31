@@ -91,3 +91,6 @@ nmap <silent><Esc><Esc> :nohlsearch<CR><Esc>
 
 " completion
 set wildmenu
+
+" latex
+let g:tex_conceal=''

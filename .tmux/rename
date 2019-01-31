@@ -1,0 +1,11 @@
+#!/bin/bash
+IFS=$'\n'
+aft=0
+for l in `tmux ls`
+do
+  pre=${l%%:*}
+  if [ $pre -ne $aft ]; then
+    tmux rename-session -t $pre $aft
+  fi
+  aft=$((aft+1))
+done
