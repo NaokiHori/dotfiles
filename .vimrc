@@ -79,6 +79,7 @@ nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 nnoremap + <C-a>
 nnoremap - <C-x>
+inoremap jj <ESC>
 set backspace=indent,eol,start
 
 " search
@@ -87,10 +88,12 @@ set smartcase
 set incsearch
 set wrapscan
 set hlsearch
-nmap <silent><Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <silent><Esc><Esc> :nohlsearch<CR><Esc>
 
 " completion
 set wildmenu
 
-" latex
-let g:tex_conceal=''
+let g:indentLine_fileTypeExclude = ['tex']
+
+autocmd BufNewFile,BufRead *.tex set spell
+

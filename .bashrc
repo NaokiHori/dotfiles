@@ -19,7 +19,9 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-alias vi='nvim'
+VIM=~/.vim
+XDG_CONFIG_HOME=~/.config
+alias vi="nvim -u $HOME/.vimrc"
 alias gl='git log --all --date-order --graph --oneline --decorate'
 alias pcs='pycodestyle'
 # personal
@@ -38,13 +40,13 @@ if [ -f ~/.git-completion.bash ]; then
   source ~/.git-completion.bash
 fi
 export PYTHONDONTWRITEBYTECODE=1
+export OMP_NUM_THREADS=4
 # debug
 ulimit -c unlimited
 alias grep='grep --color'
 
 # entering tmux
 export TERM=xterm-256color
-source $HOME/.dotfiles/.tmux/rename
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
 function is_osx() { [[ $OSTYPE == darwin* ]]; }
 function is_screen_running() { [ ! -z "$STY" ]; }
@@ -95,3 +97,4 @@ function tmux_automatically_attach_session()
   fi
 }
 tmux_automatically_attach_session
+source $HOME/.dotfiles/.tmux/rename
