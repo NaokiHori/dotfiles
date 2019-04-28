@@ -8,13 +8,16 @@ fi
 # User specific aliases and functions
 alias vi="mvim -v -u $HOME/.vimrc"
 alias gl='git log --all --date-order --graph --oneline --decorate'
-alias ls='ls --color'
+alias ls='ls -G'
 alias grep='grep --color'
 
 if [ -f ~/.git-completion.bash ]; then
   source ~/.git-completion.bash
 else
-  echo "No git-completion.bash"
+  echo "No git-completion.bash, start install"
+  wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -O ~/.git-completion.bash
+  chmod a+x ~/.git-completion.bash
+  source ~/.git-completion.bash
 fi
 
 export PYTHONDONTWRITEBYTECODE=1
@@ -71,10 +74,8 @@ function tmux_automatically_attach_session()
   fi
 }
 tmux_automatically_attach_session
-source $HOME/.dotfiles/.tmux/rename
 
 # remove overlapped path from $PATH
-# 
 _path=""
 for _p in $(echo $PATH | tr ':' ' '); do
   case ":${_path}:" in
