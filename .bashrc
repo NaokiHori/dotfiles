@@ -1,49 +1,23 @@
 # .bashrc
 
-function _reset_path {
-  local p
-  for p in PATH; do
-    local ip=$(eval echo "\$INIT_$p")
-    if [ -z "$ip" ]; then
-      eval export INIT_$p="\$$p"
-    else
-      eval export $p="$ip"
-    fi
-  done
-}
-_reset_path
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
 # User specific aliases and functions
-VIM=~/.vim
-XDG_CONFIG_HOME=~/.config
-alias vi="nvim -u $HOME/.vimrc"
+alias vi="mvim -v -u $HOME/.vimrc"
 alias gl='git log --all --date-order --graph --oneline --decorate'
-alias pcs='pycodestyle'
-# personal
-if [ -f ~/.others ]; then
-  source ~/.others
-fi
-# tex
-if [ -f ~/.texrc ]; then
-  source ~/.texrc
-fi
-# local libraries
-export CPATH=/home/naokihori/.local/include
-export PATH=$PATH:/home/naokihori/.local/lib
-# git completion
+alias ls='ls --color'
+alias grep='grep --color'
+
 if [ -f ~/.git-completion.bash ]; then
   source ~/.git-completion.bash
+else
+  echo "No git-completion.bash"
 fi
+
 export PYTHONDONTWRITEBYTECODE=1
-export OMP_NUM_THREADS=4
-# debug
-ulimit -c unlimited
-alias grep='grep --color'
 
 # entering tmux
 export TERM=xterm-256color
@@ -98,3 +72,24 @@ function tmux_automatically_attach_session()
 }
 tmux_automatically_attach_session
 source $HOME/.dotfiles/.tmux/rename
+
+# remove overlapped path from $PATH
+# 
+_path=""
+for _p in $(echo $PATH | tr ':' ' '); do
+  case ":${_path}:" in
+    *:"${_p}":* )
+      ;;
+    * )
+      if [ "$_path" ]; then
+        _path="$_path:$_p"
+      else
+        _path=$_p
+      fi
+      ;;
+  esac
+done
+PATH=$_path
+
+unset _p
+unset _path
