@@ -1,9 +1,22 @@
-# .bashrc
+# .zshrc
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-  . /etc/bashrc
-fi
+# enable color
+autoload -Uz colors
+colors
+# enable completion
+fpath=(/usr/local/share/zsh-completions $fpath)
+autoload -Uz compinit
+compinit -u
+# key bind
+bindkey -v
+# history-related settings
+setopt share_history
+setopt histignorealldups
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+# correct typo automatically
+setopt correct
 
 # User specific aliases and functions
 alias vi="mvim -v -u $HOME/.vimrc"
@@ -17,15 +30,6 @@ alias single='docker run --rm -it -v ${PWD}:/project naokihori/single_fftw'
 # tex-related alias
 alias preview='open -a Preview'
 alias bibdesk='open -a BibDesk'
-
-if [ -f ~/.git-completion.bash ]; then
-  source ~/.git-completion.bash
-else
-  echo "No git-completion.bash, start install"
-  wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -O ~/.git-completion.bash
-  chmod a+x ~/.git-completion.bash
-  source ~/.git-completion.bash
-fi
 
 export PYTHONDONTWRITEBYTECODE=1
 
@@ -103,8 +107,4 @@ unset _p
 unset _path
 
 # prompt info
-export PS1="[\h: \W]$ "
-# coloring less
-export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
-export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
-
+PROMPT='[%m: %c]$ '

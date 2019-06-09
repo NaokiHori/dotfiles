@@ -60,7 +60,6 @@ set number
 set laststatus=2
 set cursorline
 set showmatch
-source $VIMRUNTIME/macros/matchit.vim
 set virtualedit=onemore
 set visualbell
 set scrolloff=3
@@ -79,7 +78,6 @@ nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 nnoremap + <C-a>
 nnoremap - <C-x>
-inoremap jj <ESC>
 set backspace=indent,eol,start
 
 " search
@@ -96,4 +94,5 @@ set wildmenu
 let g:indentLine_fileTypeExclude = ['tex']
 
 autocmd BufNewFile,BufRead *.tex set spell
+autocmd BufNewFile,BufRead *.gp set syntax=gnuplot
 
