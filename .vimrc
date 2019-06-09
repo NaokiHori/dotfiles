@@ -26,7 +26,6 @@ if dein#load_state(s:dein_dir)
 endif
 
 filetype plugin indent on
-syntax enable
 
 call map(dein#check_clean(), "delete(v:val, 'rf')")
 
@@ -53,12 +52,8 @@ set shiftwidth=2
 
 " visual
 syntax enable
-if !has('gui_running')
-  set t_Co=256  " needed for tmux
-endif
 set number
 set laststatus=2
-set cursorline
 set showmatch
 set virtualedit=onemore
 set visualbell

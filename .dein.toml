@@ -6,18 +6,6 @@ repo='Shougo/VimProc'
 build='make'
 
 [[plugins]]
-repo='cocopon/iceberg.vim'
-hook_add='''
-  au MyAutoCmd VimEnter * nested colorscheme iceberg
-'''
-
-# [[plugins]]
-# repo='tomasr/molokai'
-# hook_add='''
-#   au MyAutoCmd VimEnter * nested colorscheme molokai
-# '''
-
-[[plugins]]
 repo='tpope/vim-commentary'
 
 [[plugins]]
@@ -25,17 +13,23 @@ repo='Yggdroot/indentLine'
 
 [[plugins]]
 repo='osyo-manga/vim-over'
-hook_add='''
+hook_add="""
   nnoremap <Space>O :OverCommandLine<CR>:%s/
   nnoremap <Space>o :OverCommandLine<CR>
-'''
+"""
+
+[[plugins]]
+repo='NaokiHori/iceberg.vim'
+hook_add="""
+  au MyAutoCmd VimEnter * nested colorscheme iceberg
+"""
 
 [[plugins]]
 repo='itchyny/lightline.vim'
 hook_add="""
   set noshowmode
   let g:lightline={ \
-    'colorscheme': 'default', \
+    'colorscheme': 'iceberg', \
     'active': { \
       'right': [['fileformat'],['totallines', 'filetype', 'fileencoding']] \
     }, \
@@ -44,3 +38,4 @@ hook_add="""
     }, \
   }
 """
+
