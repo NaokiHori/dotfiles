@@ -59,7 +59,8 @@ __EOF__
 
 # Set format.
 if [ -z "$1" ]; then
-    FORMAT='#.1u%(#.2UG/#.2TG)'
+    # FORMAT='#.1u%(#.2UG/#.2TG)'
+    FORMAT='memory #.1u%'
 else
     FORMAT=$1
 fi

@@ -1,0 +1,3 @@
+#!/bin/bash
+rmbat=$(pmset -g ps | grep -o '[0-9]\+%')
+echo "battey" $rmbat
