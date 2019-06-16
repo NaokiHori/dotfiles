@@ -96,4 +96,5 @@ set wildmenu
 let g:indentLine_fileTypeExclude = ['tex']
 
 autocmd BufNewFile,BufRead *.tex set spell
+autocmd BufNewFile,BufRead *.gp set syntax=gnuplot
 
