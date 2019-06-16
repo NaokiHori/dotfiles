@@ -56,7 +56,6 @@ set number
 set laststatus=2
 set showmatch
 set virtualedit=onemore
-set visualbell
 set scrolloff=3
 
 " key mapping

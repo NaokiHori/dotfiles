@@ -19,13 +19,13 @@ SAVEHIST=10000
 setopt correct
 
 # User specific aliases and functions
-function chpwd() { ls }
 alias vi="mvim -v -u $HOME/.vimrc"
 alias gl='git log --all --date-order --graph --oneline --decorate'
 alias ls='ls -G'
 alias la='ls -alG'
 alias ll='ls -lG'
 alias grep='grep --color'
+function chpwd() { ls }
 #  simulation-related alias
 alias paraview='open -a Paraview-5.6.0.app'
 alias parallel='docker run --rm -it -v ${PWD}:/project naokihori/parallel_fftw'

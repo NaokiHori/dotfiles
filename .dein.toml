@@ -8,15 +8,12 @@ build='make'
 [[plugins]]
 repo='tpope/vim-commentary'
 
-# [[plugins]]
-# repo='Yggdroot/indentLine'
-
-# [[plugins]]
-# repo='osyo-manga/vim-over'
-# hook_add="""
-#   nnoremap <Space>O :OverCommandLine<CR>:%s/
-#   nnoremap <Space>o :OverCommandLine<CR>
-# """
+[[plugins]]
+repo='osyo-manga/vim-over'
+hook_add="""
+  nnoremap <Space>O :OverCommandLine<CR>:%s/
+  nnoremap <Space>o :OverCommandLine<CR>
+"""
 
 [[plugins]]
 repo='NaokiHori/iceberg.vim'
