@@ -1,61 +1,38 @@
-# .bashrc
+# .zshrc
 
-function _reset_path {
-  local p
-  for p in PATH; do
-    local ip=$(eval echo "\$INIT_$p")
-    if [ -z "$ip" ]; then
-      eval export INIT_$p="\$$p"
-    else
-      eval export $p="$ip"
-    fi
-  done
-}
-_reset_path
-
-export PATH=$HOME/.local/bin:$PATH
-export LD_LIBRARY_PATH=$HOME/.local/lib:$HOME
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-  . /etc/bashrc
-fi
+# enable color
+autoload -Uz colors
+colors
+# enable completion
+fpath=(/usr/local/share/zsh-completions $fpath)
+autoload -Uz compinit
+compinit -u
+# key bind
+bindkey -v
+# history-related settings
+setopt share_history
+setopt histignorealldups
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+# correct typo automatically
+setopt correct
 
 # User specific aliases and functions
-alias vi="nvim -u $HOME/.vimrc"
+alias vi="mvim -v -u $HOME/.vimrc"
 alias gl='git log --all --date-order --graph --oneline --decorate'
-alias pcs='pycodestyle'
-alias bring='cp ~/fluid/storage/movie.py .'
-# personal
-if [ -f ~/.others ]; then
-  source ~/.others
-fi
-# tex
-if [ -f ~/.texrc ]; then
-  source ~/.texrc
-fi
-# local libraries
-export PATH=$HOME/.local/bin:$PATH
-export CPATH=/home/naokihori/.local/include
-export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
-export INFOPATH=/usr/local/texlive/2019/texmf-dist/doc/info:$INFOPATH
-export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
-# git completion
-if [ -f ~/.git-completion.bash ]; then
-  source ~/.git-completion.bash
-else
-  echo "No git-completion.bash, start install"
-  wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -O ~/.git-completion.bash
-  chmod a+x ~/.git-completion.bash
-  source ~/.git-completion.bash
-fi
+alias ls='ls -G'
+alias la='ls -alG'
+alias ll='ls -lG'
+alias grep='grep --color'
+function chpwd() { ls }
+#  simulation-related alias
+alias paraview='open -a Paraview-5.6.0.app'
+alias parallel='docker run --rm -it -v ${PWD}:/project naokihori/parallel_fftw'
+alias single='docker run --rm -it -v ${PWD}:/project naokihori/single_fftw'
+# tex-related alias
+alias preview='open -a Preview'
+alias bibdesk='open -a BibDesk'
 
 export PYTHONDONTWRITEBYTECODE=1
 
@@ -111,6 +88,26 @@ function tmux_automatically_attach_session()
   fi
 }
 tmux_automatically_attach_session
-source $HOME/.dotfiles/tmux/rename
 
-PS1="[UT-Desktop \W]$ "
+# remove overlapped path from $PATH
+_path=""
+for _p in $(echo $PATH | tr ':' ' '); do
+  case ":${_path}:" in
+    *:"${_p}":* )
+      ;;
+    * )
+      if [ "$_path" ]; then
+        _path="$_path:$_p"
+      else
+        _path=$_p
+      fi
+      ;;
+  esac
+done
+PATH=$_path
+
+unset _p
+unset _path
+
+# prompt info
+PROMPT='[%m: %c]$ '
