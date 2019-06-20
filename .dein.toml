@@ -7,6 +7,9 @@ build='make'
 
 [[plugins]]
 repo='tpope/vim-commentary'
+hook_add="""
+    autocmd FileType gp setlocal commentstring=#\ %s
+"""
 
 [[plugins]]
 repo='osyo-manga/vim-over'
