@@ -39,7 +39,7 @@ set noswapfile
 set autoread
 set hidden
 set showcmd
-autocmd BufWritePre * :%s/\s\+$//ge
+autocmd BufWritePre * if  &ft!='markdown' | :%s/\s\+$//ge
 set viminfo='20,\"1000
 
 " tab, indent
