@@ -1,0 +1,44 @@
+[[plugins]]
+repo='Shougo/dein.vim'
+
+[[plugins]]
+repo='Shougo/VimProc'
+build='make'
+
+[[plugins]]
+repo='tpope/vim-commentary'
+hook_add="""
+  autocmd FileType gp setlocal commentstring=#\ %s
+  autocmd FileType m  setlocal commentstring=%\ %s
+"""
+
+[[plugins]]
+repo='osyo-manga/vim-over'
+hook_add="""
+  nnoremap <Space>O :OverCommandLine<CR>:%s/
+  nnoremap <Space>o :OverCommandLine<CR>
+"""
+
+[[plugins]]
+repo='catppuccin/nvim'
+hook_add="""
+  colorscheme catppuccin-mocha
+"""
+
+[[plugins]]
+repo='itchyny/lightline.vim'
+hook_add="""
+  set noshowmode
+  let g:lightline = { \
+    'colorscheme': 'catppuccin', \
+    'active': { \
+      'right': [['fileformat'],['totallines', 'filetype', 'fileencoding']] \
+    }, \
+    'component': { \
+      'totallines': '%L lines' \
+    }, \
+  }
+"""
+
+[[plugins]]
+repo='rust-lang/rust.vim'

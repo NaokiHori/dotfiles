@@ -1,0 +1,12 @@
+# User specific aliases and functions
+alias vi="nvim -u $HOME/.vimrc"
+alias vim="nvim -u $HOME/.vimrc"
+alias gl='git log --all --date-order --graph --oneline --decorate'
+alias ls='exa'
+alias la='ls -alG'
+alias ll='ls -lG'
+alias tree='ls --tree'
+alias grep='grep --color'
+alias cat="bat"
+
+source ~/.zsh_alias_tex
