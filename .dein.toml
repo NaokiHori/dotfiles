@@ -2,7 +2,7 @@
 repo='Shougo/dein.vim'
 
 [[plugins]]
-repo='Shougo/VimProc'
+repo='Shougo/vimproc.vim'
 build='make'
 
 [[plugins]]
@@ -20,24 +20,60 @@ hook_add="""
 """
 
 [[plugins]]
-repo='catppuccin/nvim'
-hook_add="""
-  colorscheme catppuccin-mocha
-"""
+repo='cocopon/iceberg.vim'
 
 [[plugins]]
 repo='itchyny/lightline.vim'
 hook_add="""
   set noshowmode
   let g:lightline = { \
-    'colorscheme': 'catppuccin', \
+    'colorscheme': 'iceberg', \
     'active': { \
-      'right': [['fileformat'],['totallines', 'filetype', 'fileencoding']] \
+      'left': [ \
+        ['mode',], \
+        ['readonly', 'modified',], \
+      ], \
+      'right': [ \
+        ['fileinfo',], \
+        ['position',], \
+      ], \
+    }, \
+    'inactive': { \
+      'left': [ \
+        ['mode',], \
+        ['readonly', 'modified',], \
+      ], \
+      'right': [ \
+        ['filename',], \
+      ], \
     }, \
     'component': { \
-      'totallines': '%L lines' \
+    }, \
+    'component_function': { \
+      'fileinfo': 'LightlineMyGetFileInfo', \
+      'position': 'LightlineMyGetPosition', \
     }, \
   }
+  function! LightlineMyGetFileInfo() abort
+    let l:filename = expand('%:t')
+    let l:filename = l:filename !=# '' ? l:filename : '[No Name]'
+    if winwidth(0) > 70
+      let l:filetype = &filetype !=# '' ? &filetype : '[No Type]'
+      return l:filename . ' | ' . l:filetype
+    else
+      return l:filename
+    endif
+  endfunction
+  function! LightlineMyGetPosition() abort
+    if winwidth(0) > 70
+      let l:row = line('.')
+      let l:col = col('.')
+      let l:byte = line2byte(l:row) + l:col - 1
+      return 'R:' . l:row . ' | ' . 'C:' . l:col . ' | ' . 'B:' . l:byte
+    else
+      return ''
+    endif
+  endfunction
 """
 
 [[plugins]]

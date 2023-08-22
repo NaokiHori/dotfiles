@@ -9,6 +9,7 @@ export TERM=xterm-256color
 # enable completions
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  FPATH=${HOME}/.rustup/toolchains/stable-x86_64-apple-darwin/share/zsh/site-functions:${FPATH}
   autoload -Uz compinit; compinit
 fi
 
@@ -26,9 +27,6 @@ SAVEHIST=10000
 # correct typo automatically
 setopt correct
 
-# load auxiliary configs
-source ~/.zsh_alias
-
 # unique path
 typeset -U path
 export PATH=${HOME}/.local/bin:${PATH}
@@ -37,8 +35,15 @@ export PATH=${HOME}/.local/bin:${PATH}
 export PYTHONDONTWRITEBYTECODE=1
 
 # prompt info
-PROMPT='%F{6}[%n: %c]$%f '
+PROMPT='%F{6}[%n|%c]$%f '
 
 # to avoid MPI warnings
 export TMPDIR=/tmp
+
+# use Docker on Lima
+export DOCKER_HOST=$(limactl list docker-rootful --format 'unix://{{.Dir}}/sock/docker.sock')
+
+# load auxiliary configs
+source ~/.zsh_alias
+source ~/.zsh_secret
 

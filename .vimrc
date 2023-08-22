@@ -1,5 +1,6 @@
 set encoding=utf-8
 set ttyfast
+
 if &compatible
   set nocompatible
 endif
@@ -10,7 +11,6 @@ augroup END
 
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-let g:dein#install_github_api_token = $GITHUB_API_TOKEN
 
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
@@ -18,21 +18,18 @@ if &runtimepath !~# '/dein.vim'
   endif
   execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
-
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
   call dein#load_toml('~/.dein.toml')
   call dein#end()
   call dein#save_state()
 endif
-
-filetype plugin indent on
-
 call map(dein#check_clean(), "delete(v:val, 'rf')")
-
 if dein#check_install()
   call dein#install()
 endif
+
+filetype plugin indent on
 
 " file
 set nobackup
@@ -79,6 +76,7 @@ autocmd Filetype rst setlocal expandtab tabstop=3 shiftwidth=3 softtabstop=3
 
 " visual
 syntax enable
+colorscheme iceberg
 set number
 set laststatus=2
 set showmatch
@@ -114,9 +112,6 @@ nnoremap <silent><Esc><Esc> :nohlsearch<CR><Esc>
 
 " completion
 set wildmenu
-
-" folding
-" set foldmethod=syntax
 
 let g:indentLine_fileTypeExclude = ['tex']
 let g:tex_flavor = "latex"
