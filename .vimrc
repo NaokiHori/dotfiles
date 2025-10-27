@@ -37,7 +37,7 @@ set noswapfile
 set autoread
 set hidden
 set showcmd
-set viminfo='20,<1000,s1000
+set shada='20,<1000,s1000
 
 " Remove trailing spaces for all files
 autocmd BufWritePre * :call RemoveCommentTrailingSpaces()
@@ -72,7 +72,9 @@ set smartindent
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-autocmd Filetype rst setlocal expandtab tabstop=3 shiftwidth=3 softtabstop=3
+autocmd Filetype rst setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4 smartindent
+autocmd Filetype markdown setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " visual
 syntax enable
@@ -137,3 +139,5 @@ let c_no_curly_error=1
 
 " run Rust formatter when saved
 let g:rustfmt_autosave = 1
+
+set nomodeline

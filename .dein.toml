@@ -20,6 +20,9 @@ hook_add="""
 """
 
 [[plugins]]
+repo='sheerun/vim-polyglot'
+
+[[plugins]]
 repo='cocopon/iceberg.vim'
 
 [[plugins]]
@@ -78,3 +81,9 @@ hook_add="""
 
 [[plugins]]
 repo='rust-lang/rust.vim'
+
+[[plugins]]
+repo='tikhomirov/vim-glsl'
+
+[[plugins]]
+repo='prisma/vim-prisma'

@@ -21,7 +21,7 @@ function truncate_string () {
 
 function check_current_dir () {
   local current_dir=$(basename ${pane_current_path})
-  current_dir=$(truncate_string ${current_dir} 16)
+  current_dir=$(truncate_string ${current_dir} 12)
   echo ${current_dir}
 }
 
@@ -30,7 +30,7 @@ function check_git_branch () {
   if [ "${branch}" = "" ]; then
     branch="N/A"
   else
-    branch=$(truncate_string ${branch} 16)
+    branch=$(truncate_string ${branch} 12)
   fi
   echo ${branch}
 }

@@ -8,7 +8,7 @@ export TERM=xterm-256color
 
 # enable completions
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  FPATH=$(brew --prefix)/share/zsh-completions:${FPATH}
   FPATH=${HOME}/.rustup/toolchains/stable-x86_64-apple-darwin/share/zsh/site-functions:${FPATH}
   autoload -Uz compinit; compinit
 fi
@@ -40,10 +40,11 @@ PROMPT='%F{6}[%n|%c]$%f '
 # to avoid MPI warnings
 export TMPDIR=/tmp
 
-# use Docker on Lima
-export DOCKER_HOST=$(limactl list docker-rootful --format 'unix://{{.Dir}}/sock/docker.sock')
-
 # load auxiliary configs
 source ~/.zsh_alias
 source ~/.zsh_secret
 
+# pyenv path configurations
+export PYENV_ROOT="${HOME}/.pyenv"
+[[ -d ${PYENV_ROOT}/bin ]] && export PATH="${PYENV_ROOT}/bin:${PATH}"
+eval "$(pyenv init -)"

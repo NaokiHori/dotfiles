@@ -1,5 +1,9 @@
+#!/usr/local/bin/zsh
+
 # User specific aliases and functions
-alias vi="nvim -u $HOME/.vimrc"
-alias ls="exa"
-alias cat="bat"
-alias python3=python3.11
+
+alias vi="nvim -u ${HOME}/.vimrc"
+alias ls="eza"
+alias ll="ls -l"
+alias tree="ls --tree"
+alias te="open -a TextEdit"
