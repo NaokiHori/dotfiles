@@ -2,7 +2,7 @@
 
 # User specific aliases and functions
 
-alias vi="nvim -u ${HOME}/.vimrc"
+alias vi="nvim"
 alias ls="eza"
 alias ll="ls -l"
 alias tree="ls --tree"

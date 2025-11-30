@@ -2,9 +2,8 @@
 
 export LANG=en_US.UTF-8
 
-# enable coloured prompt, use xterm-256color
+# enable coloured prompt
 autoload -Uz colors; colors
-export TERM=xterm-256color
 
 # enable completions
 if type brew &>/dev/null; then
@@ -42,9 +41,9 @@ export TMPDIR=/tmp
 
 # load auxiliary configs
 source ~/.zsh_alias
-source ~/.zsh_secret
+# source ~/.zsh_secret
 
-# pyenv path configurations
-export PYENV_ROOT="${HOME}/.pyenv"
-[[ -d ${PYENV_ROOT}/bin ]] && export PATH="${PYENV_ROOT}/bin:${PATH}"
-eval "$(pyenv init -)"
+# # pyenv path configurations
+# export PYENV_ROOT="${HOME}/.pyenv"
+# [[ -d ${PYENV_ROOT}/bin ]] && export PATH="${PYENV_ROOT}/bin:${PATH}"
+# eval "$(pyenv init -)"
